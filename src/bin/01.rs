@@ -1,9 +1,20 @@
 pub fn part_one(input: &str) -> Option<u32> {
-    None
+
+    input.split("\n\n").
+    map(|x| x.split("\n").map(|y| 
+        y.parse::<u32>().unwrap()).sum::<u32>())
+    .max()
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
-    None
+    let mut sorted_sums = input.split("\n\n").
+    map(|x| x.split("\n").map(|y| 
+        y.parse::<u32>().unwrap()).sum::<u32>())
+    .collect::<Vec<u32>>();
+
+    sorted_sums.sort();
+
+    Some(sorted_sums.iter().rev().take(3).sum::<u32>())
 }
 
 fn main() {
